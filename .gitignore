@@ -11,4 +11,8 @@ pids
 logs
 results
 
+public/js/lib/
+public/img/
+public/css/
+
 npm-debug.log
