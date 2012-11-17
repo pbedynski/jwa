@@ -14,6 +14,12 @@ results
 public/js/lib/
 public/img/
 public/css/
+public/skins/
+public/swf/
+server/keys/
 server/node_modules/
+data/
+gallery/
+
 
 npm-debug.log
