@@ -1,6 +1,8 @@
 var spdy = require('spdy'),
-	fs = require('fs'),
-	path = require('path');
+    fs = require('fs'),
+    path = require('path'),
+    nodeStatic = require('node-static');
+    util = require('util');
 
 var options = {
 	key: fs.readFileSync(__dirname + '/keys/spdy-key.pem'),
@@ -10,51 +12,27 @@ var options = {
 
 var port = 8081;
 
-spdy.createServer(options, function(request, response) {
-     
-    var filePath = '../public/' + request.url;
-    if (filePath == './public/')
-        filePath = './index.html';
-   var extname = path.extname(filePath);
-   switch (extname) {
-        case '.js':
-            contentType = 'text/javascript';
-            break;
-        case '.css':
-            contentType = 'text/css';
-            break;
-        case '.html':
-            contentType = 'text/html';
-            break;
-        case '.jpg':
-            contentType = 'image';
-            break;
-        case '.png':
-            contentType = 'image';
-            break;           
-    }
+var webroot = '../public';
+var file = new(nodeStatic.Server)(webroot, {
+  cache: 600
+});
 
-
-    path.exists(filePath, function(exists) {
-     
-        if (exists) {
-            fs.readFile(filePath, function(error, content) {
-                if (error) {
-                    response.writeHead(500);
-                    response.end();
-                }
-                else {
-                    response.writeHead(200, { 'Content-Type': contentType });
-                    response.end(content, 'utf-8');
-                }
-            });
-        }
-        else {
-            response.writeHead(404);
-            response.end();
+spdy.createServer(options, function(req, res) {
+    req.addListener('end', function(){
+        file.serve(req,res, function(err, result){
+            if (err) {
+                console.error('Error serving %s - %s', req.url, err.message);
+                if (err.status === 404 || err.status === 500) {
+                    file.serveFile(util.format('/%d.html', err.status), err.status, {}, req, res);
+                } else {
+                  res.writeHead(err.status, err.headers);
+                  res.end();
+              }
+          } else {
+            console.log('%s - %s', req.url, res.message);
         }
     });
-
+    })
 }).listen(port);
 
 console.log('Server running at http://localhost:%d/', port);
