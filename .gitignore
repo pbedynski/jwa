@@ -14,5 +14,6 @@ results
 public/js/lib/
 public/img/
 public/css/
+server/node_modules/
 
 npm-debug.log
