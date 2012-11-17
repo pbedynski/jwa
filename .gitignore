@@ -14,5 +14,9 @@ results
 public/js/lib/
 public/img/
 public/css/
+public/skins/
+public/swf/
+data/
+gallery/
 
 npm-debug.log
