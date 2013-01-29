@@ -18,5 +18,7 @@ public/skins/
 public/swf/
 data/
 gallery/
+node_modules/
+server/keys/
 
 npm-debug.log

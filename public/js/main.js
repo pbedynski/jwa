@@ -13,11 +13,12 @@ requirejs.config({
 
 require(["jquery.min", "bootstrap.min", "d3.v2.min", "knockout"], 
 	
-	function($){ 
-       $(function(){
-          // carousel demo
-          $('#myCarousel').carousel();
-    	});
-	}
-);
+	 function($){ 
+ //       $(function(){
+ //          // carousel demo
+ //          $('#myCarousel').carousel();
+// }
+  
+  });
+
 

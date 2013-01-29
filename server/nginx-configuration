@@ -1,0 +1,4 @@
+#nginx configuration
+#./configure --with-http_gzip_static_module --with-http_ssl_module
+#sudo ./usr/local/nginx/sbin/nginx
+#sudo ./usr/local/nginx/sbin/nginx -s stop
