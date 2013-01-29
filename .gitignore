@@ -16,8 +16,8 @@ public/img/
 public/css/
 public/skins/
 public/swf/
-data/
-gallery/
+public/data/
+public/gallery/
 node_modules/
 server/keys/
 
