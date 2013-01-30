@@ -33,22 +33,31 @@ define(
   }
 
 
+  var setMarker = function(item){
+    this.name = item.data.address;
+    this.lat = ko.observable(item.data.lat);
+    this.long = ko.observable(item.data.lon);
+    console.log('Set Market: ' + this.lat() + " " + this.long());
+    var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(this.lat(), this.long()),
+        title: name,
+        map: map,
+        draggable: true
+      });
+    item.marker = marker;
+  }
+
+
+
+var map = new google.maps.Map(document.getElementById("map_canvas"),{
+    zoom: 10,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    center: new google.maps.LatLng(52, 20)
+});
+
 	return function appViewModel() {
     
     var self = this;
-
-
-  console.log('gmaps');
-  // console.log(gmaps);
-   var mapOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        console.log(document.getElementById("map_canvas"));
-      var map = new google.maps.Map(document.getElementById("map_canvas"),
-            mapOptions);
-
 
     // Data
     self.apartmentsInfo = AllDataJSON.apartments_info;
@@ -63,24 +72,30 @@ define(
     //analyze data
 
     _.each(AllDataJSON.apartments, function(apartment){
-      self.apartments().push(new Item(apartment, 'Apartments'));
+      var item = new Item(apartment, 'Apartments');
+      self.apartments().push(item);
+      setMarker(item);
     })
     _.each(AllDataJSON.penthouses, function(penthouse){
-      self.penthouses().push(new Item(penthouse, 'Penthouses'));
+      var item = new Item(penthouse, 'Penthouses');
+      self.penthouses().push(item);
+      setMarker(item);
     })
     _.each(AllDataJSON.houses, function(house){
-      self.house().push(new Item(house, 'Houses'));
+      var item = new Item(house, 'Houses');
+      self.houses().push(item);
+      setMarker(item);
     })
     _.each(AllDataJSON.stores, function(store){
-      self.stores().push(new Item(store,"Stores"));
+      var item = new Item(store, 'Stores');
+      self.stores().push(item);
+      setMarker(item);
     })
 
     var instance;
     // Helper
     self.applyGallery = function(element){
       //TODO: after render is called for each element .. here is should only be called once
-      console.log('apply gallery: ' + element);
-      console.log('gallery len ' +$('#Gallery a').length);
 
       var PhotoSwipe = window.Code.PhotoSwipe;
       var options =  {  getImageMetaData: function(el){ return { relatedUrl: el.getAttribute('related_url') }}}
@@ -162,6 +177,7 @@ define(
     self.goToItem = function(item) {
       console.log('goto item: ' + item);
       location.hash = item.type + '/' + item.data.id; 
+      
     }
 
     self.getItemByIdAndType = function(id, type){
@@ -184,7 +200,12 @@ define(
         this.get('#:folder/:itemid', function() {
           self.chosenFolderId(this.params.folder);
           self.chosenItemData(self.getItemByIdAndType(this.params.itemid, this.params.folder));
-          console.log(self.chosenItemData());
+          var item = self.chosenItemData();
+          
+          map.setCenter(item.marker.position);
+          item.marker.setAnimation(google.maps.Animation.BOUNCE);
+          window.setTimeout(function(){item.marker.setAnimation(null)}, 4000);
+          // self.marker.setPosition(item.mapcenter);
           // $.get("/", { itemid: this.params.itemid }, self.chosenItemData);
         });
     

@@ -21,7 +21,7 @@
   <script type="text/javascript" src="js/lib/klass.min.js"></script>
   <script type="text/javascript" src="js/lib/code.photoswipe-3.0.5.min.js"></script>
 
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true&key=AIzaSyBg-qxX2ZSPVdWfti2dwzvSc9CPNdzxNbY"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&key=AIzaSyBg-qxX2ZSPVdWfti2dwzvSc9CPNdzxNbY"></script>
 </head>
 <body>
   <div class="navbar navbar-fixed-top navbar-inverse">
@@ -57,6 +57,14 @@
         </div>
       </div>
     </div>
+<div class="row-fluid">
+  <div class="span4 offset4">
+<div class="alert alert-success">
+  <center><i class="icon-gift"></i>  <em>Wszystkiego najlepszego ULA!<em>  <i class="icon-gift"></i></center>
+</div>
+</div>
+</div>
+
     <div class="row-fluid">  
       <div class="span7 offset1">
         <h2 class="featurette-heading">J.W. Apartments  
@@ -74,7 +82,7 @@
               <div class="tab-pane active" id="tab_main1">
                 <div class="media">
                   <a class="pull-right" href="#">
-                    <img class="media-object" src="img/car1.jpg" style="height:200px" >
+                    <img class="img-polaroid" src="/img/car1.jpg" style="height:200px" >
                   </a>
                   <div class="media-body">
                     <p class="">Firma <strong>JW Apartments</strong>  powstała w 1990 roku jako firma rodzinna.  Przez wiele lat zajmowała się importem artykułów przemysłowych z krajów Beneluksu, transportem, usługami  logistycznymi, budowlanymi i pośrednictwem w handlu nieruchomościami. Obecnie zajmuje się przede wszystkim budową i wynajmem magazynów, mieszkań i jachtów. 
@@ -85,7 +93,7 @@
               <div class="tab-pane" id="tab_main2">
                 <div class="media">
                   <a class="pull-left" href="#">
-                    <img class="img-polaroid" src="img/car4.jpg" style="height:200px">
+                    <img class="img-polaroid" src="/img/car4.jpg" style="height:200px">
                   </a>
                   <div class="media-body">
                       <p>W związku z wieloletnim doświadczeniem, profesjonalnym personelem i rodzinnym charakterem firmy, świadczy ona usługi na najwyższym poziomie jakości, bezpieczeństwa i zadowolenia klienta. Wynajmowane przez nią powierzchnie magazynowe, mieszkania i jachty są na konkurencyjnym poziomie cenowym. Ich jakość jest też bardzo wysoka..</p>
@@ -101,7 +109,7 @@
     <div class="well well-small">
       <div class="row-fluid">
         <div class="span4 hidden-phone"><br/><br/>
-            <img class="img-polaroid" src="img/car3.jpg">
+            <img class="img-polaroid" src="/img/car3.jpg">
         </div> 
       <div class="span8">
      <div id="myCarousel" class="carousel slide">
@@ -109,14 +117,14 @@
         <div class="item active">
          
             <div class="carousel-caption">
-              <h3><a href="#mieszkania">Mieszkania</a></h3>
+              <h3><a href="#Apartments">Mieszkania</a></h3>
               <p class="lead">Mieszkania, które Państwu oferujemy pod wynajem mają różny standard wykończenia, różne ceny i różną lokalizację (głównie Centrum Warszawy, Mokotów, Tarchomin, Wilanów, Wawer oraz najwięcej w Wesołej - St. Miłosna i w Sulejówku). Każdy znajdzie coś dla siebie.</p>
             </div>
           </div>
 
         <div class="item">
           <div class="carousel-caption">
-              <h3><a href="#mieszkania">Penthouse</a></h3>
+              <h3><a href="#Penthouses">Penthouse</a></h3>
               <p class="lead">Penthouse, który Państwu oferujemy pod wynajem: salon, kuchnia, 4 sypialnie, 2 łazienki, wc, garderoba, taras na dachu 100 m2 z grilem, garaż na 3 samochody, IV piętro, winda tylko do tego apartamentu na tym piętrze, widok na Pałac Wilanowski. </p>
            
             </div>
@@ -124,7 +132,7 @@
         
         <div class="item ">
             <div class="carousel-caption">
-             <h3><a href="#mieszkania">Magazyny</a></h3>
+             <h3><a href="#Stores">Magazyny</a></h3>
               <p class="lead">Magazyny, które Państwu oferujemy pod wynajem znajdują się w Sulejówku, na granicy z Warszawą - Wesoła, w bardzo dobrym usytuowaniu komunikacyjnym, z wygodnymi placami manewrowymi, zapleczem socjalnym, mediami, z całodobową ochroną. Możemy dopasować ich powierzchnię oraz cenę do Państwa potrzeb.</p>
           </div>
         </div>
@@ -143,7 +151,7 @@
          <p data-bind="text : $root.templateFolderInfo().desc"></p>
       </div>
       <div class="well well-small">
-      <table class="table table-condensed table-striped" style="font-size:12px">
+      <table class="table table-condensed" style="font-size:12px">
         <colgroup>
           <col width="14%">
           <col width="8%">
@@ -166,8 +174,8 @@
           <tr data-bind="click: $root.goToItem">
             <td data-bind="text: data.address"></td>
             <td><center>
-              <label class="badge badge-success" data-bind="visible: data.available"><i class="icon-ok"></i></label>
-              <label class="badge badge-important" data-bind="visible: !data.available"><i class="icon-remove"></i></label>
+              <label class="badge badge-success" data-bind="visible: data.availability"><i class="icon-ok"></i></label>
+              <label class="badge badge-important" data-bind="visible: !data.availability"><i class="icon-remove"></i></label>
               </center>
             </td>
             <td data-bind="text: costs"></td>
@@ -175,7 +183,7 @@
             <td data-bind="text: data.description"></td>
             <td>
               <div data-bind="foreach : {data : data.gallery, as : 'photo'} ">
-                  <img class="img-polaroid" data-bind="visible : $root.shouldShowElement($parent.data.gallery.length, $index()),attr: {src : photo.path_thumb}"/>
+                  <img class="img-polaroid" data-bind="visible : $root.shouldShowElement($parent.data.gallery.length, $index()), attr: {src : photo.path_thumb, alt : photo.caption}"/>
               </div>  
             </td>
           </tr>
@@ -185,43 +193,46 @@
     </div>
 
     <div data-bind="with: $root.chosenItemData()">
-      <div class="well well-small">
-         <h3 data-bind="text: $root.chosenFolderId()"></h3> 
-      </div>
-          <table class="table table-hover table-condensed">
+      
+        <em> <a data-bind="attr : { href : '#'+$root.chosenFolderId()}"> <h4><i class="icon-arrow-left"></i> <span data-bind="text: $root.chosenFolderId()"></span></a> </h4></em>
+      
+        <div class="row-fluid">
+          <div class="span6">
+          <table class="table table-condensed">
             <tbody>
               <tr><td><strong>Address</strong></td><td data-bind="text: $root.chosenItemData().data.address"></td></tr>
               <tr><td><strong>Availability</strong></td>
                 <td>
-                  <label class="badge badge-success" data-bind="visible: $root.chosenItemData().data.available"><i class="icon-ok"></i></label>
-              <label class="badge badge-important" data-bind="visible: !$root.chosenItemData().data.available"><i class="icon-remove"></i></label>
+                  <label class="badge badge-success" data-bind="visible: $root.chosenItemData().data.availability"><i class="icon-ok"></i></label>
+              <label class="badge badge-important" data-bind="visible: !$root.chosenItemData().data.availability"><i class="icon-remove"></i></label>
                 </td>
               </tr>
               <tr><td><strong>Price</strong></td><td data-bind="text: $root.chosenItemData().costs"></td></tr>
               <tr><td><strong>Area</strong></td><td data-bind="text: $root.chosenItemData().data.area"></td></tr>
               <tr><td><strong>Description</strong></td><td data-bind="text: $root.chosenItemData().data.description"></td></tr>
-              <tr><td><strong>Photos</strong></td>
-                <td>
-                  <div id="Gallery" class="gallery" data-bind="foreach : {data : data.gallery, as : 'photo', afterRender : $root.applyGallery} ">
-                    <a data-bind="attr :{href : photo.path, related_url : photo.path}" data-related-url="http://www.photoswipe.com/latest/examples/images/full/001.jpg">
-                  <img class="img-polaroid" data-bind="attr: {src : photo.path_thumb}"/></a>
-                  </div>  
-                </td>
-              </tr>
-              <tr><td><strong>Map</strong></td>
-                <td>
-                  <div id="map_canvas" style="width:100%; height:200px"></div>
-                </td>
-              </tr>
+
             </tbody>
           </table>
+        </div>
+        <div class="span6">
+          <div class="map">
+          <div id="map_canvas" class="map"></div>
+        </div>
+        </div>
+        </div>  
+          <div class="well well-small">
+                  <div id="Gallery" class="gallery" data-bind="foreach : {data : data.gallery, as : 'photo', afterRender : $root.applyGallery} ">
+                    <a data-bind="attr :{href : photo.path, related_url : photo.path}" data-related-url="http://www.photoswipe.com/latest/examples/images/full/001.jpg">
+                  <img class="img-polaroid" data-bind="attr: {src : photo.path_thumb, alt : photo.caption}"/></a>
+                  </div>  
+             </div> 
         </div>
   </div>
 
   <div data-bind="visible: $root.shouldDisplayRightPanel()">
     <div class="span3 offset1">
       <h3>Kontakt:  </h3>
-            <table class="table table-condensed table-striped">
+            <table class="table table-condensed">
             <tbody>
             <tr>
               <td><i class="icon-map-marker"></i></td>
@@ -239,29 +250,49 @@
            </table>
           <a href="kontakt.html"><button class="btn btn-success btn-small"><i class="icon-zoom-in"></i> znajdź nas</button></a>
           <a href="kontakt.html"><button class="btn btn-success btn-small"><i class="icon-pencil"></i> napisz do nas</button></a>
-      
+
           <h3>Oferta Specjalna:</h3>
-          <div class="tabbable"> <!-- Only required for left/right tabs -->
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab1" data-toggle="tab">Jachty</a></li>
-              <li><a href="#tab2" data-toggle="tab">Magazyny</a></li>
-              <li><a href="#tab3" data-toggle="tab">Lato 2013</a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane active" id="tab1">
-                <p>Super wyposażony, szybki i waleczny Sun Odyssey 42i na nowy sezon 2012. Zamów już dziś !!</p>
-                <p><a class="btn btn-success btn-small" href="">Więcej</a></p>
+
+          <div class="accordion" id="offerAccordion">
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#offerAccordion" href="#collapseOne">
+                 Jachty
+                </a>
               </div>
-              <div class="tab-pane" id="tab2">
-                <p>MAGAZYNY DO WYNAJĘCIA od 180 m2 do 1000 m2 !!! W lokalizacji Sulejówek, Hotelowa 4 - Centrum logistyczne, doskonały dojazd /200m od trasy A2 - Warszawa-Terespol/, ochrona fizyczna, monitoring.</p>
+              <div id="collapseOne" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                 <p>Super wyposażony, szybki i waleczny Sun Odyssey 42i na nowy sezon 2012. Zamów już dziś !!</p>
                 <p><a class="btn btn-success btn-small" href="">Więcej</a></p>
-              </div>
-              <div class="tab-pane" id="tab3">
-                <p>Lato w Bułgarii... czemu nie! Apartamenty 66 m2, 75 m2 i 100 m2 w pięknej okolicy, 200 m do morza, pole golfowe, lecznicze błota, 10 km do słynnych Złotych  Piasków !!!</p>
-                <p><a class="btn btn-success btn-small" href="">Więcej</a></p>
+                </div>
               </div>
             </div>
-         
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#offerAccordion" href="#collapseTwo">
+                  Magazyny
+                </a>
+              </div>
+              <div id="collapseTwo" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <p>MAGAZYNY DO WYNAJĘCIA od 180 m2 do 1000 m2 !!! W lokalizacji Sulejówek, Hotelowa 4 - Centrum logistyczne, doskonały dojazd /200m od trasy A2 - Warszawa-Terespol/, ochrona fizyczna, monitoring.</p>
+                <p><a class="btn btn-success btn-small" href="">Więcej</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#offerAccordion" href="#collapseThree">
+                 Lato 2013
+                </a>
+              </div>
+              <div id="collapseThree" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <p>Lato w Bułgarii... czemu nie! Apartamenty 66 m2, 75 m2 i 100 m2 w pięknej okolicy, 200 m do morza, pole golfowe, lecznicze błota, 10 km do słynnych Złotych  Piasków !!!</p>
+                <p><a class="btn btn-success btn-small" href="">Więcej</a></p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

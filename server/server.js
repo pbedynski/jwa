@@ -12,12 +12,12 @@ var spdy = require('spdy'),
 // 	ca: fs.readFileSync(__dirname + '/keys/spdy-csr.pem')
 // };
 
-var PORT = process.argv[2] || 8081;
+var PORT = process.env.VCAP_APP_PORT ||  8081;
 var PROCESS_NAME = 'Server-Static';
 var LOG_PROCESS_NAME = '('+PROCESS_NAME+')';
 
 
-var webroot = '../public';
+var webroot = 'public/';
 var file = new(nodeStatic.Server)(webroot, {
   cache: 600
 });

@@ -25,13 +25,6 @@ require.config({
     }
 })
 
-//convert Google Maps into an AMD module
-// define('myGmaps', [''],
-// function(){
-//     return window.google.maps;
-// });
-
-
 require(['jquery','underscore-min','bootstrap.min', 'knockout', 'app/appViewModel','domReady!'], 
 	function  ($, _, bootstrap, ko, appViewModel, gmaps) {
     //foo and bar are loaded according to requirejs
@@ -41,6 +34,9 @@ require(['jquery','underscore-min','bootstrap.min', 'knockout', 'app/appViewMode
     ko.applyBindings(new appViewModel());
     console.log('init carousel');
     $('.carousel').carousel();
+
+
+
 
 });
 
