@@ -11,13 +11,6 @@ pids
 logs
 results
 
-public/js/lib/
-public/img/
-public/css/
-public/skins/
-public/swf/
-public/data/
-public/gallery/
 node_modules/
 server/keys/
 

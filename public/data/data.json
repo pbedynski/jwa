@@ -1,0 +1,222 @@
+{
+	"apartments_info" :{
+		"name" : "Aparamenty",
+		"desc" : "Mieszkania, które Państwu oferujemy pod wynajem mają różny standard wykończenia, różne ceny i różną lokalizację (głównie Centrum Warszawy, Mokotów, Tarchomin, Wilanów, Wawer oraz najwięcej w Wesołej - St. Miłosna i w Sulejówku). Każdy znajdzie coś dla siebie."
+	},
+	"apartments" : [
+		{
+			"id" : 1,
+			"type" : "apartments",
+			"address" : "Warszawa-Tarchomin, Książkowa 9C",
+			"lat" : "52.33006794582179",
+			"lon": "20.940370559692383",
+			"availability" : true,
+			"price" : "289 000 zł",
+			"area": "46 m2",
+			"additional" : "opłaty",
+			"description" : "2 bedrooms, garage, balcony, first floor",
+			"gallery" : [
+				{
+					"path": "gallery/apartments/1/ksiazkowa_114_po_remoncie_001.jpg",
+					"path_thumb": "gallery/apartments/1/thumb/ksiazkowa_114_po_remoncie_001.jpg",
+					"caption": "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 1"
+				},
+				{
+					"path": "gallery/apartments/1/ksiazkowa_114_po_remoncie_005.jpg",
+					"path_thumb": "gallery/apartments/1//thumb/ksiazkowa_114_po_remoncie_005.jpg",
+					"caption": "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 2"
+				},
+				{
+					"path": "gallery/apartments/1/ksiazkowa_114_po_remoncie_007.jpg",
+					"path_thumb": "gallery/apartments/1/thumb/ksiazkowa_114_po_remoncie_007.jpg",
+					"caption": "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 3"
+				},
+				{
+					"path": "gallery/apartments/1/ksiazkowa_114_po_remoncie_008.jpg",
+					"path_thumb": "gallery/apartments/1/thumb/ksiazkowa_114_po_remoncie_008.jpg",
+					"caption": "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 4"
+				},
+				{
+					"path": "gallery/apartments/1/ksiazkowa_114_po_remoncie_009.jpg",
+					"path_thumb": "gallery/apartments/1/thumb/ksiazkowa_114_po_remoncie_009.jpg",
+					"caption": "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 5"
+				},
+				{
+					"path": "gallery/apartments/1/ksiazkowa_114_po_remoncie_013.jpg",
+					"path_thumb": "gallery/apartments/1/thumb/ksiazkowa_114_po_remoncie_013.jpg",
+					"caption": "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 6"
+				}
+			]
+		},
+
+		{
+			"id" : 2, 
+			"type" : "apartments",
+			"address" : "Warszawa-Wilanów, Sarmacka 9",
+			"lat" : "52.16221839932557",
+			"lon": "21.075382232666015",
+			"availability" : false,
+			"price" : "289 000 zł",
+			"area": "85 m2",
+			"additional" : "opłaty",
+			"description" : "parter, 2 sypialnie, salon, kuchnia, 2 łazienki, garaż na 2 samochody, 2 ogródki/tarasy od strony sypialni i salonu. 600 m do Pałacu Wilanowskiego, 400 m do Świątyni Opatrzności, wokół tereny do rekreacji.",
+			"gallery" : [
+				{
+					"path": "gallery/apartments/2/foto0001.jpg",
+					"path_thumb": "gallery/apartments/2/thumb/foto0001.jpg",
+					"caption": "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 1"
+				},
+				{
+					"path": "gallery/apartments/2/foto0002.jpg",
+					"path_thumb": "gallery/apartments/2/thumb/foto0002.jpg",
+					"caption": "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 2"
+				},
+				{
+					"path": "gallery/apartments/2/foto0003.jpg",
+					"path_thumb": "gallery/apartments/2/thumb/foto0003.jpg",
+					"caption": "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 3"
+				},
+				{
+					"path": "gallery/apartments/2/foto0004.jpg",
+					"path_thumb": "gallery/apartments/2/thumb/foto0004.jpg",
+					"caption": "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 4"
+				},
+				{
+					"path": "gallery/apartments/2/foto0005.jpg",
+					"path_thumb": "gallery/apartments/2/thumb/foto0005.jpg",
+					"caption": "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 5"
+				}
+				
+			]
+		},
+		{
+			"id" : 3, 
+			"type" : "apartments",
+			"address" : "Sulejówek, Szklarniowa 85/11A",
+			"lat" : "52.224882",
+			"lon": "21.253867",
+			"availability" : false,
+			"price" : "",
+			"area": "21 m2",
+			"additional" : "",
+			"description" : "mieszkanie w domu wielorodzinnym, 1-pokojowe, aneks kuchenny, łazienka z wanną.",
+			"gallery" : [
+			]
+		}
+
+	],
+	"penthouses_info" : {	
+		"name" : "Penthause",
+		"desc" : "Penthouse, który Państwu oferujemy pod wynajem:  salon, kuchnia, 4 sypialnie, 2 łazienki, wc, garderoba, taras na dachu 100 m2 z grilem, garaż na 3 samochody, IV piętro, winda tylko do tego apartamentu na tym piętrze, widok na Pałac Wilanowski. "
+	},
+	"penthouses" : [
+		{
+			"id" : 1,
+			"type" : "penthouses",
+			"address" : "Warszawa-Wilanów, Sarmacka 11/49",
+			"lat" : "52.33006794582179",
+			"lon": "20.940370559692383",
+			"availability" : false,
+			"status" : "rented",
+			"price" : "8900PLN",
+			"area": "150 m2",
+			"additional" : "opłaty",
+			"description" : "Penthause: salon, kuchnia, 4 sypialnie, 2 łazienki, wc, garderoba, taras na dachu 100 m2 z grilem, garaż na 3 samochody, IV piętro, winda tylko do tego apartamentu na tym piętrze, widok na Pałac Wilanowski.",
+			"gallery" : [
+			]
+		}
+
+	],
+	"houses_info" :{
+		"name" : "Domy",
+		"desc": "Domy, które Państwu oferujemy pod wynajem:"
+	},
+	"houses" : [ 
+		{
+			"id" : 1,
+			"type" : "houses",
+			"address" : "Warszawa-Radość, Kocka 1/1",
+			"lat" : "52.180616",
+			"lon": "21.211252",
+			"availability" : false,
+			"available_from" : "",
+			"status" : "",
+			"price" : "",
+			"area": "110 m2",
+			"additional" : "",
+			"description" : "3 pokoje, 2 łazienki, garaż, taras z ogrodem ok.800m2, piękne otoczenie i świeże, zdrowe powietrze. Obiekt chroniony przez Solid Security.",
+			"gallery" : [
+			]
+		},
+		{
+			"id" : 2,
+			"type" : "houses",
+			"address" : "Warszawa-Radość, Kocka 1/2",
+			"lat" : "52.180353",
+			"lon": "21.211638",
+			"availability" : false,
+			"available_from" : "01.02.2013",
+			"status" : "",
+			"price" : "",
+			"area": "80 m2",
+			"additional" : "",
+			"description" : "salon, 2 sypialnie, WC, łazienka, garaż, taras z ogrodem ok.800 m2. Piękna okolica i świeże powietrze. Obiekt chroniony.",
+			"gallery" : [
+			]
+		},
+		{
+			"id" : 3,
+			"type" : "houses",
+			"address" : "Sulejówek, Dworcowa 103",
+			"lat" : "52.249783",
+			"lon": "21.270196",
+			"availability" : true,
+			"available_from" : "01.02.2013",
+			"status" : "",
+			"price" : "",
+			"area": "160 m2",
+			"additional" : "",
+			"description" : "5 pokoi na dwóch poziomach, garaż, działka 550 m2 z ogródkiem, centrum miasta, bliskość kolejki SKM. NEW DESIGN od 01.09.2010 !!!",
+			"gallery" : [
+			]
+		}
+	],
+	"stores_info" :{
+		"name" : "Magazyny",
+		"desc": "Magazyny, które Państwu oferujemy pod wynajem znajdują się w Sulejówku, na granicy z Warszawą - Wesoła, w bardzo dobrym usytuowaniu komunikacyjnym (ok. 12 km od centrum stolicy, tuż przy trasie A2 Warszawa-Terespol), z wygodnymi placami manewrowymi, zapleczem socjalnym, mediami (elektryczność, woda, opcjonalnie ogrzewanie, telefony, Internet), z całodobową ochroną. Możemy dopasować ich powierzchnię oraz cenę do Państwa potrzeb (w związku z ich modułową budową)."
+	},
+	"stores" : [
+			{
+			"id" : 1,
+			"type" : "stores",
+			"address" : "Hotelowa 4, Sulejówek",
+			"lat" : "52.223948",
+			"lon": "21.250756",
+			"availability" : true,
+			"available_from" : "",
+			"status" : "",
+			"price" : "14 zł/m2",
+			"area": "180 m2",
+			"additional" : "ok.1,50zł/m2",
+			"description" : "Kompleks magazynów, około 6000m2, powierzchnia socjalna, parking, ochrona 24h, monitoring dla każdego boksu oddzielny.",
+			"gallery" : [
+			]
+		},
+		{
+			"id" : 2,
+			"type" : "stores",
+			"address" : "Trakt Brzeski 172; 05-070 Sulejówek / Zakręt",
+			"lat" : "52.222686",
+			"lon": "21.253052",
+			"availability" : true,
+			"available_from" : "",
+			"status" : "",
+			"price" : "5 zł/m2",
+			"area": "1700 m2",
+			"additional" : "300",
+			"description" : "Działka 1700m2 utwardzona kostką z budynkiem biurowo - socjalnym ok.100m2 i wiatą ok.200m2 w bardzo dobrym miejscu (przy zjeździe na Lublin w Zakręcie, droga wylotowa z Warszawy do Siedlec, 12km do centrum, na granicy Warszawy - Wesoła). Idealne miejsce na siedzibę firmy.",
+			"gallery" : [
+			]
+		}
+	]
+}

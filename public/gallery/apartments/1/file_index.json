@@ -1,0 +1,32 @@
+[
+	{
+		path: "ksiazkowa_114_po_remoncie_001.jpg",
+		path_thumb: "thumb/ksiazkowa_114_po_remoncie_001.jpg"
+		caption: "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 1"
+	},
+	{
+		path: "ksiazkowa_114_po_remoncie_005.jpg",
+		path_thumb: "thumb/ksiazkowa_114_po_remoncie_005.jpg"
+		caption: "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 2"
+	},
+	{
+		path: "ksiazkowa_114_po_remoncie_007.jpg",
+		path_thumb: "thumb/ksiazkowa_114_po_remoncie_007.jpg"
+		caption: "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 3"
+	},
+	{
+		path: "ksiazkowa_114_po_remoncie_008.jpg",
+		path_thumb: "thumb/ksiazkowa_114_po_remoncie_008.jpg"
+		caption: "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 4"
+	},
+	{
+		path: "ksiazkowa_114_po_remoncie_009.jpg",
+		path_thumb: "thumb/ksiazkowa_114_po_remoncie_009.jpg"
+		caption: "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 5"
+	},
+	{
+		path: "ksiazkowa_114_po_remoncie_013.jpg",
+		path_thumb: "thumb/ksiazkowa_114_po_remoncie_013.jpg"
+		caption: "Książkowa 9C/114, Warszawa, Tarchomin, zdjęcie 6"
+	}
+]
