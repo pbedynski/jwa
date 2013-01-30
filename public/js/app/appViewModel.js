@@ -1,5 +1,5 @@
 define(
-	['jquery','underscore-min','knockout', 'sammy','text!../../data/data.json', 'domReady!'], 
+	['jquery','underscore-min','knockout', 'sammy','text!../../data/data.json','domReady!'], 
   function($, _, ko, Sammy, AllData) {
 
  var _ = this.window._;
@@ -30,27 +30,42 @@ define(
       return this.data.price + " " + this.data.additional;
     }, this);
     this.type = type;
+    this.toString = function(){
+      return "[Item] type: " + data.type + " id: " + data.id; 
+    }
   }
 
 
-  var setMarker = function(item){
+  var markerPenthousePath = 'img/markers/penthouse.png';
+  var markerApartmentPath = 'img/markers/apartment.png';
+  var markerHousePath = 'img/markers/house.png';
+  var markerStorePath = 'img/markers/store.png';
+
+  var setMarker = function(item, onMarkerClick){
     this.name = item.data.address;
     this.lat = ko.observable(item.data.lat);
     this.long = ko.observable(item.data.lon);
-    console.log('Set Market: ' + this.lat() + " " + this.long());
+    // console.log('Set Market: ' + this.lat() + " " + this.long());
+    var markerPath;
+    if (item.data.type ==="apartments") markerPath = markerApartmentPath;
+    if (item.data.type ==="penthouses") markerPath = markerPenthousePath;
+    if (item.data.type ==="stores") markerPath = markerStorePath;
+    if (item.data.type ==="houses") markerPath = markerHousePath;
+
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(this.lat(), this.long()),
         title: name,
         map: map,
-        draggable: true
+        draggable: false,
+        icon : markerPath
       });
+    google.maps.event.addListener(marker, 'click', onMarkerClick);
     item.marker = marker;
   }
 
 
-
 var map = new google.maps.Map(document.getElementById("map_canvas"),{
-    zoom: 10,
+    zoom: 13,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     center: new google.maps.LatLng(52, 20)
 });
@@ -58,7 +73,29 @@ var map = new google.maps.Map(document.getElementById("map_canvas"),{
 	return function appViewModel() {
     
     var self = this;
+    //localize
+    window.locale = 'pl';    
+    self.LPenthouses = ko.observable();
+    self.LStores = ko.observable();
+    self.LHouses = ko.observable();
+    self.LApartments = ko.observable();
 
+    self.locale = ko.observable('pl');
+    self.setLanguagePl = function(){self.setLanguage('pl')}
+    self.setLanguageEn = function(){self.setLanguage('en')}
+    self.setLanguage = function(language) {
+      // console.log('Set language' + language);
+      window.locale = language;
+      self.locale(language);
+    }
+
+    self.showModal = function(){
+      $('#modalUla').modal('toggle');
+    }
+
+    self.hideModal = function() {
+      $('#modalUla').modal('hide');
+    }
     // Data
     self.apartmentsInfo = AllDataJSON.apartments_info;
     self.apartments = ko.observableArray([]);
@@ -71,25 +108,34 @@ var map = new google.maps.Map(document.getElementById("map_canvas"),{
 
     //analyze data
 
+    self.onMarkerClick = function(item) {
+      return function(){
+        console.log('marker clicked: ' + item);
+        self.goToItem(item); 
+        item.marker.setAnimation(google.maps.Animation.BOUNCE)
+      }
+    }
+    
     _.each(AllDataJSON.apartments, function(apartment){
       var item = new Item(apartment, 'Apartments');
       self.apartments().push(item);
-      setMarker(item);
+      setMarker(item, self.onMarkerClick(item));
     })
     _.each(AllDataJSON.penthouses, function(penthouse){
       var item = new Item(penthouse, 'Penthouses');
       self.penthouses().push(item);
-      setMarker(item);
+      setMarker(item, self.onMarkerClick(item));
+      
     })
     _.each(AllDataJSON.houses, function(house){
       var item = new Item(house, 'Houses');
       self.houses().push(item);
-      setMarker(item);
+      setMarker(item, self.onMarkerClick(item));
     })
     _.each(AllDataJSON.stores, function(store){
       var item = new Item(store, 'Stores');
       self.stores().push(item);
-      setMarker(item);
+      setMarker(item, self.onMarkerClick(item));
     })
 
     var instance;
@@ -175,7 +221,7 @@ var map = new google.maps.Map(document.getElementById("map_canvas"),{
 
     
     self.goToItem = function(item) {
-      console.log('goto item: ' + item);
+      // console.log('goto item: ' + item);
       location.hash = item.type + '/' + item.data.id; 
       
     }
@@ -204,7 +250,7 @@ var map = new google.maps.Map(document.getElementById("map_canvas"),{
           
           map.setCenter(item.marker.position);
           item.marker.setAnimation(google.maps.Animation.BOUNCE);
-          window.setTimeout(function(){item.marker.setAnimation(null)}, 4000);
+          // window.setTimeout(function(){item.marker.setAnimation(null)}, 10000);
           // self.marker.setPosition(item.mapcenter);
           // $.get("/", { itemid: this.params.itemid }, self.chosenItemData);
         });
@@ -213,3 +259,4 @@ var map = new google.maps.Map(document.getElementById("map_canvas"),{
     }).run();   
 	} 
 });
+

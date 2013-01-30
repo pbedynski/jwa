@@ -43,13 +43,16 @@
               <li><a href="http://www.jwa.pl/bulgaria_golf_sail.html">Bułgaria</a></li>
             </ul>
             <ul class="nav pull-right">
-              <li><a href="kontakt.html">Kontakt</a></li>
-               <li class="dropdown dropdown-inverse">
-                <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="iconflag-polish"></i><b class="caret"></b></a>
+              
+               <li id="languageDropDown" class="dropdown dropdown-inverse" >
+                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="iconflag-polish" data-bind="visible: $root.locale()=='pl'"></i>
+                  <i class="iconflag-english" data-bind="visible: $root.locale()=='en'"></i>
+                  <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#"><i class="iconflag-polish"></i> Polski</a></li>
+                  <li data-bind="click : $root.setLanguagePl"><a ><i class="iconflag-polish"></i> Polski</a></li>
                   <li class="divider"></li>
-                  <li><a href="#"><i class="iconflag-english"></i> English</a></li>
+                  <li data-bind="click : $root.setLanguageEn"><a ><i class="iconflag-english"></i> English</a></li>
                 </ul>
               </li>
             </ul>
@@ -59,10 +62,40 @@
     </div>
 <div class="row-fluid">
   <div class="span4 offset4">
-<div class="alert alert-success">
-  <center><i class="icon-gift"></i>  <em>Wszystkiego najlepszego ULA!<em>  <i class="icon-gift"></i></center>
+<div class="alert alert-success" data-bind="click: $root.showModal" >
+  <center>
+    <button class="btn btn-small btn-warning"><i class="icon-gift"></i></button>
+    <button class="btn btn-small btn-primary">Wszystkiego najlepszego ULA!</button>
+    <button class="btn btn-small btn-warning"><i class="icon-gift"></i></button>
+  </center>
 </div>
 </div>
+</div>
+
+<div id="modalUla" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" aria-hidden="true"  data-bind="click: $root.hideModal">×</button>
+    <h3 id="myModalLabel">Sto lat Ula! <img src="img/ula.png" class="img-circle pull-right"/></h3>
+  </div>
+  <div class="modal-body">
+    <small>
+    <p>Jak widzisz tu wszystko jest jeszcze do zmiany. Czasem trzeba odświeżyć żeby coś zaczęło działać :) </p>
+    <ul>
+      <li>bazę danych trzeba uzupełnić</li>
+      <li>mapy mozna usprawnić</li>
+      <li>strona kontaktu (tej pierwsza wersja już jest)</li>
+      <li>Jezyk Angielski/Polski/...</li>
+      <li>uproszczenie logiki aplikacji</li>
+      <li>web site performance</li>
+      <li>SPDY zamiast HTTP, SSL</li>
+    </ul>
+    niemniej troche już jest .. i <a href="http://goo.gl/tTr6C">łatwo tu zmieniać style</a><br/>
+    jeśli jeszcze nie widziałaś to wejdź na tą stronę przez komórkę/tablet .. (albo zmniejsz okno przeglądarki). To jest chyba podstawowa zaleta tej strony :)  
+  </small>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-small btn-primary" aria-hidden="true" data-bind="click: $root.hideModal">OKAY, got that!</button>
+  </div>
 </div>
 
     <div class="row-fluid">  
