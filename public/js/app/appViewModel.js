@@ -3,6 +3,11 @@ define(
   function($, _, ko, Sammy, AllData) {
 
  var _ = this.window._;
+ 
+ var Penthouse  = "Penthouse";
+ var Apartment  = "Apartment";
+ var House      = "House";
+ var Store      = "Store";
 
  var safeParseJson = function(text) {
     try {
@@ -24,12 +29,11 @@ define(
 
   var AllDataJSON = safeParseJson(AllData);
 
-  function Item(data, type){
+  function Item(data){
     this.data = data;
     this.costs = ko.computed(function(){
       return this.data.price + " " + this.data.additional;
     }, this);
-    this.type = type;
     this.toString = function(){
       return "[Item] type: " + data.type + " id: " + data.id; 
     }
@@ -47,10 +51,10 @@ define(
     this.long = ko.observable(item.data.lon);
     // console.log('Set Market: ' + this.lat() + " " + this.long());
     var markerPath;
-    if (item.data.type ==="apartments") markerPath = markerApartmentPath;
-    if (item.data.type ==="penthouses") markerPath = markerPenthousePath;
-    if (item.data.type ==="stores") markerPath = markerStorePath;
-    if (item.data.type ==="houses") markerPath = markerHousePath;
+    if (item.data.type === Apartment) markerPath = markerApartmentPath;
+    if (item.data.type === Penthouse) markerPath = markerPenthousePath;
+    if (item.data.type === Store) markerPath = markerStorePath;
+    if (item.data.type === House) markerPath = markerHousePath;
 
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(this.lat(), this.long()),
@@ -63,7 +67,6 @@ define(
     item.marker = marker;
   }
 
-
 var map = new google.maps.Map(document.getElementById("map_canvas"),{
     zoom: 13,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -74,11 +77,7 @@ var map = new google.maps.Map(document.getElementById("map_canvas"),{
     
     var self = this;
     //localize
-    window.locale = 'pl';    
-    self.LPenthouses = ko.observable();
-    self.LStores = ko.observable();
-    self.LHouses = ko.observable();
-    self.LApartments = ko.observable();
+    window.locale = 'pl';   
 
     self.locale = ko.observable('pl');
     self.setLanguagePl = function(){self.setLanguage('pl')}
@@ -96,17 +95,10 @@ var map = new google.maps.Map(document.getElementById("map_canvas"),{
     self.hideModal = function() {
       $('#modalUla').modal('hide');
     }
-    // Data
-    self.apartmentsInfo = AllDataJSON.apartments_info;
-    self.apartments = ko.observableArray([]);
-    self.penthousesInfo = AllDataJSON.penthouses_info;
-    self.penthouses = ko.observableArray([]);
-    self.housesInfo = AllDataJSON.houses_info;
-    self.houses = ko.observableArray([]);
-    self.storesInfo = AllDataJSON.stores_info;
-    self.stores = ko.observableArray([]);
 
-    //analyze data
+    self.info = AllDataJSON.info;
+    self.objects = ko.observableArray([]);
+
 
     self.onMarkerClick = function(item) {
       return function(){
@@ -115,28 +107,32 @@ var map = new google.maps.Map(document.getElementById("map_canvas"),{
         item.marker.setAnimation(google.maps.Animation.BOUNCE)
       }
     }
-    
-    _.each(AllDataJSON.apartments, function(apartment){
-      var item = new Item(apartment, 'Apartments');
-      self.apartments().push(item);
+
+    //analyze data
+    _.each(AllDataJSON.objects, function(object){
+      var item = new Item(object);
+      self.objects().push(item);
       setMarker(item, self.onMarkerClick(item));
-    })
-    _.each(AllDataJSON.penthouses, function(penthouse){
-      var item = new Item(penthouse, 'Penthouses');
-      self.penthouses().push(item);
-      setMarker(item, self.onMarkerClick(item));
-      
-    })
-    _.each(AllDataJSON.houses, function(house){
-      var item = new Item(house, 'Houses');
-      self.houses().push(item);
-      setMarker(item, self.onMarkerClick(item));
-    })
-    _.each(AllDataJSON.stores, function(store){
-      var item = new Item(store, 'Stores');
-      self.stores().push(item);
-      setMarker(item, self.onMarkerClick(item));
-    })
+    });
+    console.log('objects ' + self.objects().length);
+
+    self.Apartments = ko.computed(function() {
+      return _.filter(self.objects(), function(object){return object.data.type === Apartment});
+    },true);
+
+    self.Penthouses = ko.computed(function() {
+      return _.filter(self.objects(), function(object){return object.data.type === Penthouse});
+    },true);
+
+    self.Stores = ko.computed(function() {
+      return _.filter(self.objects(), function(object){return object.data.type === Store});
+    },true);
+
+    self.Houses = ko.computed(function() {
+      return _.filter(self.objects(), function(object){return object.data.type === House})
+    },true);
+
+    // Gallery
 
     var instance;
     // Helper
@@ -168,18 +164,20 @@ var map = new google.maps.Map(document.getElementById("map_canvas"),{
       self.elementDisplayed((self.elementDisplayed()+1)%100);
     }, interval);
 
+
     // Navigation
+
     self.chosenFolderId = ko.observable();
     self.chosenItemData = ko.observable();
   
    self.isTemplateFolder = function(folder) {
-       return   folder === "Apartments" || 
-                folder === "Penthouses" || 
-                folder === "Houses" || 
-                folder === "Stores";
+       return   folder === Apartment || 
+                folder === Penthouse || 
+                folder === House || 
+                folder === Store;
     }
 
-    self.foldersToShow = ['Apartments', 'Penthouses', 'Houses','Stores'];
+    self.foldersToShow = [Apartment, Penthouse, House , Store];
     
     self.isCurrentlyTemplateFolder = ko.computed(function(){
       return self.isTemplateFolder(self.chosenFolderId());  
@@ -199,18 +197,18 @@ var map = new google.maps.Map(document.getElementById("map_canvas"),{
 
     self.templateFolderInfo = ko.computed(function(){
       if (! self.isCurrentlyTemplateFolder()) return null;
-      if (self.chosenFolderId() === 'Apartments') return self.apartmentsInfo; 
-      if (self.chosenFolderId() === 'Penthouses')  return self.penthousesInfo;
-      if (self.chosenFolderId() === 'Houses')  return self.housesInfo;
-      if (self.chosenFolderId() === 'Stores')  return self.storesInfo;
+      if (self.chosenFolderId() === Apartment) return self.info.Apartment; 
+      if (self.chosenFolderId() === Penthouse)  return self.info.Penthouse;
+      if (self.chosenFolderId() === House)  return self.info.House;
+      if (self.chosenFolderId() === Store)  return self.info.Store;
       return null;
     },this);
     self.templateFolderData = ko.computed(function(){
       if (! self.isCurrentlyTemplateFolder()) return null;
-      if (self.chosenFolderId() === 'Apartments') return self.apartments; 
-      if (self.chosenFolderId() === 'Penthouses')  return self.penthouses;
-      if (self.chosenFolderId() === 'Houses')  return self.houses;
-      if (self.chosenFolderId() === 'Stores')  return self.stores;
+      if (self.chosenFolderId() === Apartment) return self.Apartments; 
+      if (self.chosenFolderId() === Penthouse)  return self.Penthouses;
+      if (self.chosenFolderId() === House)  return self.Houses;
+      if (self.chosenFolderId() === Store)  return self.Stores;
       return null;
     },this);
 
@@ -218,21 +216,19 @@ var map = new google.maps.Map(document.getElementById("map_canvas"),{
     self.goToFolder = function(folder) { 
       location.hash = folder;
     };
-
     
     self.goToItem = function(item) {
-      // console.log('goto item: ' + item);
-      location.hash = item.type + '/' + item.data.id; 
-      
+      console.log('goto item: ' + item.toString());
+      location.hash = item.data.type + '/' + item.data.id; 
     }
 
     self.getItemByIdAndType = function(id, type){
       var id = parseInt(id);
       console.log('looking for ' + type + " id: " + id);
-      if (type ==='Apartments') return _.find(self.apartments(), function(item){return item.data.id === id}); 
-      if (type ==='Penthouses') return _.find(self.penthouses(), function(item){return item.data.id === id});
-      if (type ==='Houses') return _.find(self.houses(), function(item){return item.data.id === id});
-      if (type ==='Stores') return _.find(self.stores(), function(item){return item.data.id === id});
+      if (type === Apartment) return _.find(self.Apartments(), function(item){return item.data.id === id}); 
+      if (type === Penthouse) return _.find(self.Penthouses(), function(item){return item.data.id === id});
+      if (type === House) return _.find(self.Houses(), function(item){return item.data.id === id});
+      if (type === Store) return _.find(self.Stores(), function(item){return item.data.id === id});
       return null;
     }
       // Client-side routes    

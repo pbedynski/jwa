@@ -310,3 +310,8 @@ div.ps-toolbar-play div.ps-toolbar-content
 }
 
 #table tbody tr:hover {cursor: pointer;}
+
+body{
+  background-image: url(../img/texture.png);
+  background-repeat:repeat;
+}
