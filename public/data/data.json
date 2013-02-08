@@ -11,7 +11,8 @@
 		"Penthouse" : {
 			"name_pl" : "Penthause",
 			"desc_pl" : "Penthouse, który Państwu oferujemy pod wynajem:  salon, kuchnia, 4 sypialnie, 2 łazienki, wc, garderoba, taras na dachu 100 m2 z grilem, garaż na 3 samochody, IV piętro, winda tylko do tego apartamentu na tym piętrze, widok na Pałac Wilanowski. ",
-			"desc_en" : "Penthouse, which we offer for rent: Penthouse: living room, kitchen, 4 bedrooms, 2 bathrooms, toilet, dressing room, roof terrace 100 m2 with barbecue, garage for 3 cars, fourth floor, lift to the apartment on this floor, view of Palace Wilanowski. Please familiarize yourself with our offer below."
+			"desc_en" : "Penthouse, which we offer for rent: Penthouse: living room, kitchen, 4 bedrooms, 2 bathrooms, toilet, dressing room, roof terrace 100 m2 with barbecue, garage for 3 cars, fourth floor, lift to the apartment on this floor, view of Palace Wilanowski. Please familiarize yourself with our offer below.",
+            "name_en" : "Penthouse"
 		},
 		
 		"Store" : {
@@ -26,7 +27,21 @@
 			"desc_pl" : "Domy, które Państwu oferujemy pod wynajem:",
 			"name_en" : "Houses",
 			"desc_en" : "Homes that we offer for rent:"
-		}
+		},
+        "whoAreWe": {
+            "name_pl" : "Kim Jesteśmy",
+            "name_en" : "Who are we",
+            "desc_pl" : "Firma JW Apartments powstała w 1990 roku jako firma rodzinna. Przez wiele lat zajmowała się importem artykułów przemysłowych z krajów Beneluksu, transportem, usługami logistycznymi, budowlanymi i pośrednictwem w handlu nieruchomościami. Obecnie zajmuje się przede wszystkim budową i wynajmem magazynów, mieszkań i jachtów.",
+            "desc_en" : "The company JW Apartments was founded in 1990 as a family. For many years she was in the import of industrial products from the Benelux countries, transportation, logistics, construction and real estate brokerage. Currently, mainly deals with building and leasing of warehouses, homes and yachts."
+        },
+        "whatDoWeOffer" : {
+            "name_pl" : "Co oferujemy",
+            "name_en" : "What do we offer",
+            "desc_pl" : "W związku z wieloletnim doświadczeniem, profesjonalnym personelem i rodzinnym charakterem firmy, świadczy ona usługi na najwyższym poziomie jakości, bezpieczeństwa i zadowolenia klienta. Wynajmowane przez nią powierzchnie magazynowe, mieszkania i jachty są na konkurencyjnym poziomie cenowym. Ich jakość jest też bardzo wysoka.",
+            "desc_en" : "In connection with years of experience, professional staff and the family nature of the company, it provides the highest level of quality, safety and customer satisfaction. Rented its warehouses, apartments and yachts are at a competitive price level. Their quality is also very high."
+        }
+
+
 
 	},
 	"objects" : [
@@ -117,7 +132,7 @@
 		},
 		{
 			"id" : 3, 
-			"type" : "apartments",
+			"type" : "Apartment",
 			"address" : "Sulejówek, Szklarniowa 85/11A",
 			"lat" : "52.224882",
 			"lon": "21.253867",

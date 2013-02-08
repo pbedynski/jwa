@@ -18,7 +18,7 @@ require(["jquery.min", "bootstrap.min", "d3.v2.min", "knockout"],
  //          // carousel demo
  //          $('#myCarousel').carousel();
 // }
-  
+
   });
 
 

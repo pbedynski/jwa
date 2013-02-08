@@ -27,39 +27,39 @@
   <div class="navbar navbar-fixed-top navbar-inverse">
      <div class="navbar-inner">
        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target= ".nav-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#"><img src="img/logo-transparent.png"></a>
-          <div class="nav-collapse">
-            <ul class="nav" data-bind="foreach: foldersToShow">
-              <li data-bind="css: { active: $data == $root.chosenFolderId() }, click: $root.goToFolder">
-                <a href="" data-bind="text: $data"></a>
-              </li>
-            </ul>
-            <ul class="nav">
-              <li><a href="http://perfectsail.pl/">Jachty</a></li>
-              <li><a href="http://www.jwa.pl/bulgaria_golf_sail.html">Bułgaria</a></li>
-            </ul>
-            <ul class="nav pull-right">
-              
-               <li id="languageDropDown" class="dropdown dropdown-inverse" >
-                <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="iconflag-polish" data-bind="visible: $root.locale()=='pl'"></i>
-                  <i class="iconflag-english" data-bind="visible: $root.locale()=='en'"></i>
-                  <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li data-bind="click : $root.setLanguagePl"><a ><i class="iconflag-polish"></i> Polski</a></li>
-                  <li class="divider"></li>
-                  <li data-bind="click : $root.setLanguageEn"><a ><i class="iconflag-english"></i> English</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+        <a class="btn btn-navbar" data-toggle="collapse" data-target= ".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#"><img src="img/logo-transparent.png"></a>
+        <div class="nav-collapse">
+          <ul class="nav" data-bind="foreach: foldersToShow">
+            <li data-bind="css: { active: $data == $root.chosenFolderId() }, click: $root.goToFolder">
+              <a href="" data-bind="text: $root.getFolderName($data)"></a>
+            </li>
+          </ul>
+          <ul class="nav">
+            <li><a href="http://perfectsail.pl/">Jachty</a></li>
+            <li><a href="http://www.jwa.pl/bulgaria_golf_sail.html">Bułgaria</a></li>
+          </ul>
+          <ul class="nav pull-right">
+            <li><a href="#Contact">Contact</a></li>
+           <li id="languageDropDown" class="dropdown dropdown-inverse" >
+            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="iconflag-polish" data-bind="visible: $root.locale()=='pl'"></i>
+              <i class="iconflag-english" data-bind="visible: $root.locale()=='en'"></i>
+              <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li data-bind="click : $root.setLanguagePl"><a ><i class="iconflag-polish"></i> Polski</a></li>
+                <li class="divider"></li>
+                <li data-bind="click : $root.setLanguageEn"><a ><i class="iconflag-english"></i> English</a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
+  </div>
 <!-- <div class="row-fluid">
   <div class="span4 offset4">
 <div class="alert alert-success" data-bind="click: $root.showModal" >
@@ -97,176 +97,279 @@
     <button class="btn btn-small btn-primary" aria-hidden="true" data-bind="click: $root.hideModal">OKAY, got that!</button>
   </div>
 </div> -->
-  
-    <div class="row-fluid">  
-      <div class="span7 offset1">
-        <h2 class="featurette-heading">J.W. Apartments  
-          <span class="muted"><small>mieszkania, magazyny, jachty</small></span>
-        </h2>
-          
-        <div data-bind="visible: $root.isHomeFolder">
-        <div class="well well-small">
-          <div class="tabbable tabs-bottom">
-            <ul class="nav nav-tabs">
-                  <li class="active"><a href="#tab_main1" data-toggle="tab">Kim jesteśmy</a></li>
-                  <li><a href="#tab_main2" data-toggle="tab">Co oferujemy</a></li>
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane active" id="tab_main1">
-                <div class="media">
+
+
+<!-- HOME FOLDER -->
+
+
+<div class="row-fluid" data-bind="visible: $root.isCurrentlyHomeFolder">
+<div class="span7 offset1">
+   <h2 class="featurette-heading">J.W. Apartments  
+      <span class="muted"><small>mieszkania, magazyny, jachty</small></span>
+   </h2>
+   <div class="well well-small">
+      <div class="tabbable tabs-bottom">
+         <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab_main1" data-toggle="tab" data-bind="text : $root.info.data.whoAreWe.name"></a></li>
+            <li><a href="#tab_main2" data-toggle="tab" data-bind="text : $root.info.data.whatDoWeOffer.name"></a></li>
+         </ul>
+         <div class="tab-content">
+            <div class="tab-pane active fade in" id="tab_main1">
+               <div class="media">
                   <a class="pull-right" href="#">
-                    <img class="img-polaroid" src="/img/car1.jpg" style="height:200px" >
+                  <img class="img-polaroid" src="/img/car1.jpg" style="height:180px" />
                   </a>
                   <div class="media-body">
-                    <p class="">Firma <strong>JW Apartments</strong>  powstała w 1990 roku jako firma rodzinna.  Przez wiele lat zajmowała się importem artykułów przemysłowych z krajów Beneluksu, transportem, usługami  logistycznymi, budowlanymi i pośrednictwem w handlu nieruchomościami. Obecnie zajmuje się przede wszystkim budową i wynajmem magazynów, mieszkań i jachtów. 
-                    </p>
+                     <p class="" data-bind="text : $root.info.data.whoAreWe.desc"> 
+                     </p>
                   </div>
-                </div>
-              </div>
-              <div class="tab-pane" id="tab_main2">
-                <div class="media">
+               </div>
+            </div>
+            <div class="tab-pane fade" id="tab_main2">
+               <div class="media">
                   <a class="pull-left" href="#">
-                    <img class="img-polaroid" src="/img/car4.jpg" style="height:200px">
+                  <img class="img-polaroid" src="/img/car4.jpg" style="height:180px" />
                   </a>
-                  <div class="media-body">
-                      <p>W związku z wieloletnim doświadczeniem, profesjonalnym personelem i rodzinnym charakterem firmy, świadczy ona usługi na najwyższym poziomie jakości, bezpieczeństwa i zadowolenia klienta. Wynajmowane przez nią powierzchnie magazynowe, mieszkania i jachty są na konkurencyjnym poziomie cenowym. Ich jakość jest też bardzo wysoka..</p>
+                  <div class="media-body" data-bind="text : $root.info.data.whatDoWeOffer.desc"></p>
                   </div>
-                </div>
-              </div>
+               </div>
             </div>
-          </div>  
-        </div>
-    <!-- Carousel
-    ================================================== -->
-
-    <div class="well well-small">
+         </div>
+      </div>
+   </div>
+   <div class="well well-small">
       <div class="row-fluid">
-        <div class="span4 hidden-phone"><br/><br/>
-            <img class="img-polaroid" src="/img/car3.jpg">
-        </div> 
-      <div class="span8">
-     <div id="myCarousel" class="carousel slide">
-      <div class="carousel-inner">
-        <div class="item active">
-         
-            <div class="carousel-caption">
-              <h3><a href="#Apartments">Mieszkania</a></h3>
-              <p class="lead">Mieszkania, które Państwu oferujemy pod wynajem mają różny standard wykończenia, różne ceny i różną lokalizację (głównie Centrum Warszawy, Mokotów, Tarchomin, Wilanów, Wawer oraz najwięcej w Wesołej - St. Miłosna i w Sulejówku). Każdy znajdzie coś dla siebie.</p>
+         <div class="span4 hidden-phone"><br />
+            <img class="img-polaroid" src="/img/car3.jpg" />
+         </div>
+         <div class="span8">
+            <div id="myCarousel" class="carousel slide">
+               <div class="carousel-inner">
+                  <div class="item active">
+                     <div class="carousel-caption">
+                        <h3><a href="#Apartment" data-bind="text : $root.info.data.Apartment.name"></a></h3>
+                        <p class="lead" data-bind="text : $root.info.data.Apartment.desc"></p>
+                     </div>
+                  </div>
+                  <div class="item">
+                     <div class="carousel-caption">
+                        <h3><a href="#Penthouse"  data-bind="text : $root.info.data.Penthouse.name"></a></h3>
+                        <p class="lead"  data-bind="text : $root.info.data.Penthouse.desc"></p>
+                     </div>
+                  </div>
+                  <div class="item ">
+                     <div class="carousel-caption">
+                        <h3><a href="#Store"  data-bind="text : $root.info.data.Store.name"></a></h3>
+                        <p class="lead"  data-bind="text : $root.info.data.Store.desc"></p>
+                     </div>
+                  </div>
+               </div>
+               <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+               <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
             </div>
-          </div>
-
-        <div class="item">
-          <div class="carousel-caption">
-              <h3><a href="#Penthouses">Penthouse</a></h3>
-              <p class="lead">Penthouse, który Państwu oferujemy pod wynajem: salon, kuchnia, 4 sypialnie, 2 łazienki, wc, garderoba, taras na dachu 100 m2 z grilem, garaż na 3 samochody, IV piętro, winda tylko do tego apartamentu na tym piętrze, widok na Pałac Wilanowski. </p>
-           
+         </div>
+      </div>
+   </div>
+   <!-- well with carousel -->
+</div>
+<!-- row span 7 -->
+<div class="span3 offset1">
+   <h3>Kontakt:  </h3>
+   <table class="table table-condensed">
+      <tbody>
+         <tr>
+            <td><i class="icon-map-marker"></i></td>
+            <td>ul. Szklarniowa 85/100<br />05-070 Sulejówek</td>
+         </tr>
+         <tr>
+            <td><i class="icon-home"></i></td>
+            <td><abbr title="Phone">(+48) 22 783 38 88</abbr> <br /></td>
+         </tr>
+         <tr>
+            <td><i class="icon-envelope"></i></td>
+            <td><a href="mailto:biuro@jwa.pl">biuro@jwa.pl</a></td>
+         </tr>
+      </tbody>
+   </table>
+   <a href="#Contact"><button class="btn btn-success btn-small"><i class="icon-zoom-in"></i> znajdź nas</button></a>
+   <a href="#Contact"><button class="btn btn-success btn-small"><i class="icon-pencil"></i> napisz do nas</button></a>
+   <h3>Oferta Specjalna:</h3>
+   <div class="accordion" id="offerAccordion">
+      <div class="accordion-group">
+         <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#offerAccordion" href="#collapseOne">
+            Jachty
+            </a>
+         </div>
+         <div id="collapseOne" class="accordion-body collapse in">
+            <div class="accordion-inner">
+               <p>Super wyposażony, szybki i waleczny Sun Odyssey 42i na nowy sezon 2012. Zamów już dziś !!</p>
+               <p><a class="btn btn-success btn-small" href="">Więcej</a></p>
             </div>
-          </div>
-        
-        <div class="item ">
-            <div class="carousel-caption">
-             <h3><a href="#Stores">Magazyny</a></h3>
-              <p class="lead">Magazyny, które Państwu oferujemy pod wynajem znajdują się w Sulejówku, na granicy z Warszawą - Wesoła, w bardzo dobrym usytuowaniu komunikacyjnym, z wygodnymi placami manewrowymi, zapleczem socjalnym, mediami, z całodobową ochroną. Możemy dopasować ich powierzchnię oraz cenę do Państwa potrzeb.</p>
-          </div>
-        </div>
+         </div>
       </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-    </div><!-- /.carousel -->
-  </div></div>
-
-</div>
-
-</div>
-    <div data-bind="visible: $root.isCurrentlyTemplateFolder() && !$root.isDetails(), with: $root.templateFolderInfo">
-      <div class="well well-small">
-         <p class="lead" data-bind="text : $root.templateFolderInfo().name_pl"></p>
-         <blockquote><em><p data-bind="text : $root.templateFolderInfo().desc_pl"></p><em></blockquote>
+      <div class="accordion-group">
+         <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#offerAccordion" href="#collapseTwo">
+            Magazyny
+            </a>
+         </div>
+         <div id="collapseTwo" class="accordion-body collapse">
+            <div class="accordion-inner">
+               <p>MAGAZYNY DO WYNAJĘCIA od 180 m2 do 1000 m2 !!! W lokalizacji Sulejówek, Hotelowa 4 - Centrum logistyczne, doskonały dojazd /200m od trasy A2 - Warszawa-Terespol/, ochrona fizyczna, monitoring.</p>
+               <p><a class="btn btn-success btn-small" href="">Więcej</a></p>
+            </div>
+         </div>
       </div>
-      <div class="well well-small">
-      <table class="table table-condensed" style="font-size:12px">
-        <colgroup>
-          <col width="14%">
-          <col width="8%">
-          <col width="14%">
-          <col width="6%">
-          <col width="">
-          <col width="15%">
-        </colgroup>
-        <thead style="background-color: #d0e9c6">
-          <tr>
-            <th>Address</th>
-            <th>Availability</th>
-            <th>Price</th>
-            <th>Area</th>
-            <th>Description</th>
-            <th>Photos</th>
-          </tr>
-        </thead>
-        <tbody data-bind="foreach: {data: $root.templateFolderData(), as : 'item'} ">
-          <tr data-bind="click: $root.goToItem">
-            <td data-bind="text: data.address"></td>
-            <td><center>
-              <label class="badge badge-success" data-bind="visible: data.availability"><i class="icon-ok"></i></label>
-              <label class="badge badge-important" data-bind="visible: !data.availability"><i class="icon-remove"></i></label>
-              </center>
-            </td>
-            <td data-bind="text: costs"></td>
-            <td data-bind="text: data.area"></td>
-            <td data-bind="text: data.description"></td>
-            <td>
-              <div data-bind="foreach : {data : data.gallery, as : 'photo'} ">
-                  <img class="img-polaroid" data-bind="visible : $root.shouldShowElement($parent.data.gallery.length, $index()), attr: {src : photo.path_thumb, alt : photo.caption}"/>
-              </div>  
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
+      <div class="accordion-group">
+         <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#offerAccordion" href="#collapseThree">
+            Lato 2013
+            </a>
+         </div>
+         <div id="collapseThree" class="accordion-body collapse">
+            <div class="accordion-inner">
+               <p>Lato w Bułgarii... czemu nie! Apartamenty 66 m2, 75 m2 i 100 m2 w pięknej okolicy, 200 m do morza, pole golfowe, lecznicze błota, 10 km do słynnych Złotych  Piasków !!!</p>
+               <p><a class="btn btn-success btn-small" href="">Więcej</a></p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+</div> <!-- row fluid-->
 
-    <div data-bind="with: $root.chosenItemData()">
-      
-        <em> <a data-bind="attr : { href : '#'+$root.chosenFolderId()}"> <h4><i class="icon-arrow-left"></i> <span data-bind="text: $root.chosenFolderId()"></span></a> </h4></em>
-      
-        <div class="row-fluid">
-          <div class="span6">
-          <table class="table table-condensed">
+
+
+<!-- / HOME FOLDER -->
+
+<!-- TEMPLATE FOLDER --> 
+
+<div data-bind="visible: $root.isCurrentlyTemplateFolder">
+<div class="row-fluid" data-bind="with: $root.templateFolderInfo">
+   <div class="span10 offset1">
+      <div class="well well-small">
+         <p class="lead" data-bind="text : name"></p>
+         <p data-bind="text : desc"></p>
+      </div>
+   </div>
+</div>
+<div class="row-fluid">
+   <div class="span5 offset1">
+      <div data-bind="visible: $root.chosenItemData()===null">
+         <div class="well well-small">
+            <table class="table table-condensed" style="font-size:12px">
+               <colgroup>
+                  <col width="12%" />
+                  <col width="8%" />
+                  <col width="14%" />
+                  <col width="6%" />
+                  <col width="" />
+               </colgroup>
+               <thead style="background-color: #d0e9c6">
+                  <tr>
+                     <th>Address</th>
+                     <th>Availability</th>
+                     <th>Price</th>
+                     <th>Area</th>
+                     <th>Description</th>
+                    <!--  <th>Photos</th> -->
+                  </tr>
+               </thead>
+               <tbody data-bind="foreach: {data: $root.templateFolderData(), as : 'item'} ">
+                  <tr data-bind="click: $root.goToItem, event: {mouseover: $root.onObjectListItemHover, mouseout : $root.onObjectListItemHoverOut}">
+                     <td data-bind="text: data.address"></td>
+                     <td>
+                        <center>
+                           <label class="badge badge-success" data-bind="visible: data.availability"><i class="icon-ok"></i></label>
+                           <label class="badge badge-important" data-bind="visible: !data.availability"><i class="icon-remove"></i></label>
+                        </center>
+                     </td>
+                     <td data-bind="text: costs"></td>
+                     <td data-bind="text: data.area"></td>
+                     <td data-bind="text: data.desc"></td>
+                     <!-- <td>
+                        <ul class="thumbnails" data-bind="foreach : {data : data.gallery, as : 'photo'} ">
+                           <li class="thumbnail img img-polaroid" data-bind="visible : $root.shouldShowElement($parent.data.gallery.length, $index())"><a href="#"><img data-bind=" attr: {src : photo.path_thumb, alt : photo.caption}" /></a>
+                           </li>
+                        </ul>
+                     </td> -->
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div data-bind="with: $root.chosenItemData">
+         <em>
+            <a data-bind="attr : { href : '#'+$root.chosenFolderId()}, with : $root.templateFolderInfo">
+               <h4><i class="icon-arrow-left"></i> <span data-bind="text: name"></span></h4>
+            </a>
+         </em>
+         <table class="table table-condensed">
             <tbody>
-              <tr><td><strong>Address</strong></td><td data-bind="text: $root.chosenItemData().data.address"></td></tr>
-              <tr><td><strong>Availability</strong></td>
-                <td>
-                  <label class="badge badge-success" data-bind="visible: $root.chosenItemData().data.availability"><i class="icon-ok"></i></label>
-              <label class="badge badge-important" data-bind="visible: !$root.chosenItemData().data.availability"><i class="icon-remove"></i></label>
-                </td>
-              </tr>
-              <tr><td><strong>Price</strong></td><td data-bind="text: $root.chosenItemData().costs"></td></tr>
-              <tr><td><strong>Area</strong></td><td data-bind="text: $root.chosenItemData().data.area"></td></tr>
-              <tr><td><strong>Description</strong></td><td data-bind="text: $root.chosenItemData().data.description"></td></tr>
-
+               <tr>
+                  <td><strong>Address</strong></td>
+                  <td data-bind="text: $root.chosenItemData().data.address"></td>
+               </tr>
+               <tr>
+                  <td><strong>Availability</strong></td>
+                  <td>
+                     <label class="badge badge-success" data-bind="visible: $root.chosenItemData().data.availability"><i class="icon-ok"></i></label>
+                     <label class="badge badge-important" data-bind="visible: !$root.chosenItemData().data.availability"><i class="icon-remove"></i></label>
+                  </td>
+               </tr>
+               <tr>
+                  <td><strong>Price</strong></td>
+                  <td data-bind="text: $root.chosenItemData().costs"></td>
+               </tr>
+               <tr>
+                  <td><strong>Area</strong></td>
+                  <td data-bind="text: $root.chosenItemData().data.area"></td>
+               </tr>
+               <tr>
+                  <td><strong>Description</strong></td>
+                  <td data-bind="text: $root.chosenItemData().data.desc"></td>
+               </tr>
             </tbody>
-          </table>
-        </div>
-        <div class="span6">
-          <div class="map">
-          <div id="map_canvas" class="map"></div>
-        </div>
-        </div>
-        </div>  
-          <div class="well well-small">
-                  <ul id="Gallery" class="thumbnails" data-bind="foreach : {data : data.gallery, as : 'photo', afterRender : $root.applyGallery} ">
-                    <li class="span3">
-                    <a class="thumbnail img img-polaroid"  data-bind="attr :{href : photo.path, related_url : photo.path}" data-related-url="http://www.photoswipe.com/latest/examples/images/full/001.jpg">
-                  <img  data-bind="attr: {src : photo.path_thumb, alt : photo.caption}"/></a></li>
-                  </ul>  
-             </div> 
-        </div>
-  </div>
+         </table>
+      </div>
+      <div  data-bind="with : $root.chosenItemData">
+    
+        <div class="well well-small"  data-bind="visible : data.gallery.length > 0">
+            <ul id="Gallery" class="thumbnails" data-bind="foreach : {data : data.gallery, as : 'photo', afterRender : $root.applyGallery} ">
+               <li>
+                  <a class="thumbnail img img-polaroid" data-bind="attr :{href : photo.path, related_url : photo.path}" data-related-url="http://www.photoswipe.com/latest/examples/images/full/001.jpg">
+                  <img data-bind="attr: {src : photo.path_thumb, alt : photo.caption}" /></a>
+               </li>
+            </ul>
+        </div>   
+      </div>
+   </div>
+    <div id="affix" data-bind="" class="span5 affix-top"   data-offset-top="400px">
+      <div id="map"  class="map">
+        <div id="map_canvas" class="map"></div>
+      </div>
 
-  <div data-bind="visible: $root.shouldDisplayRightPanel()">
-    <div class="span3 offset1">
-      <h3>Kontakt:  </h3>
-            <table class="table table-condensed">
+    </div>
+</div>
+
+</div>
+
+
+<!-- / TEMPLATE FOLDER -->
+
+<!-- CONTACT FOLDER --> 
+<div data-bind="visible: $root.isCurrentlyContactFolder">
+     <div class="container">
+      <div class="page-header">
+            <h1>J.W. Apartments</h1>
+            <p>Thank you for visiting J.W. Apartments. If you would like to get in contact with us simply fill out the form below. Cheers!</p>
+      </div>
+      <div class="row-fluid">
+        <div class="span12">
+        <div class="span6">
+          <div class="well">
+         <h2>Kontakt:</h2>
+           <table class="table table-condensed">
             <tbody>
             <tr>
               <td><i class="icon-map-marker"></i></td>
@@ -282,55 +385,75 @@
             </tr>
           </tbody>
            </table>
-          <a href="kontakt.html"><button class="btn btn-success btn-small"><i class="icon-zoom-in"></i> znajdź nas</button></a>
-          <a href="kontakt.html"><button class="btn btn-success btn-small"><i class="icon-pencil"></i> napisz do nas</button></a>
 
-          <h3>Oferta Specjalna:</h3>
-
-          <div class="accordion" id="offerAccordion">
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#offerAccordion" href="#collapseOne">
-                 Jachty
-                </a>
-              </div>
-              <div id="collapseOne" class="accordion-body collapse in">
-                <div class="accordion-inner">
-                 <p>Super wyposażony, szybki i waleczny Sun Odyssey 42i na nowy sezon 2012. Zamów już dziś !!</p>
-                <p><a class="btn btn-success btn-small" href="">Więcej</a></p>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#offerAccordion" href="#collapseTwo">
-                  Magazyny
-                </a>
-              </div>
-              <div id="collapseTwo" class="accordion-body collapse">
-                <div class="accordion-inner">
-                  <p>MAGAZYNY DO WYNAJĘCIA od 180 m2 do 1000 m2 !!! W lokalizacji Sulejówek, Hotelowa 4 - Centrum logistyczne, doskonały dojazd /200m od trasy A2 - Warszawa-Terespol/, ochrona fizyczna, monitoring.</p>
-                <p><a class="btn btn-success btn-small" href="">Więcej</a></p>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#offerAccordion" href="#collapseThree">
-                 Lato 2013
-                </a>
-              </div>
-              <div id="collapseThree" class="accordion-body collapse">
-                <div class="accordion-inner">
-                  <p>Lato w Bułgarii... czemu nie! Apartamenty 66 m2, 75 m2 i 100 m2 w pięknej okolicy, 200 m do morza, pole golfowe, lecznicze błota, 10 km do słynnych Złotych  Piasków !!!</p>
-                <p><a class="btn btn-success btn-small" href="">Więcej</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="well thumbnails"><center>
+             <a class="thumbnail" href="https://maps.google.com/maps?q=ul.+Szklarniowa+85%2F100+05-070+Sulej%C3%B3wek&hl=pl&ie=UTF8&ll=52.224277,21.255198&spn=0.030232,0.077162&geocode=+&hnear=Szklarniowa+85,+05-070+Sulej%C3%B3wek,+mi%C5%84ski,+mazowieckie,+Polska&t=m&z=14"><img class="img img-circle" src="img/map.png"/></a>
+           </center>
+          </div><!-- well -->
         </div>
       </div>
- </div>
+        <div class="span6">
+          <div class="well"> 
+            <h2>Napisz do nas!</h2>
+           <script type="text/javascript">
+           var RecaptchaOptions = {
+              theme : 'clean'
+           };
+          </script>
+          <form>
+            <div class="control-group">
+                <label class="control-label" for="inputName"><i class="icon-user"></i> Full Name</label>
+                <div class="controls control-row">
+                  <input type="text" class="input-xxlarge" id="inputName" placeholder="Full Name"/>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputEmail"><i class="icon-envelope"></i> Email</label>
+                <div class="controls control-row">
+                  <input type="email" class="input-xxlarge" id="inputEmail" placeholder="john@example.com"/>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputSubject"><i class="icon-question-sign"></i> Subject</label>
+                <div class="controls control-row">
+                  <input type="text" class="input-xxlarge" id="inputSubject" placeholder="What's up?"/>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputMessage"><i class="icon-pencil"></i> Message</label>
+                <div class="controls control-row">
+                  <textarea  rows="6"  class="input-xxlarge" id="inputMessage" placeholder="What's on your mind?"></textarea>
+                </div>
+            </div>
+             <script type="text/javascript"
+                   src="https://www.google.com/recaptcha/api/challenge?k=6LdXG9wSAAAAACtX5NYbTQtFNel7IY8nWBRF5Uaw">
+              </script>
+            <div class="control-group">
+              <noscript>
+                <iframe src="https://www.google.com/recaptcha/api/noscript?k=6LdXG9wSAAAAACtX5NYbTQtFNel7IY8nWBRF5Uaw"
+                       height="100%" width="500" frameborder="0"></iframe><br>
+                <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+                </textarea>
+                <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+              </noscript>
+            </div>
+            <div class="control-group">
+                <div class="controls control-row">
+                  <button type="submit" class="btn btn-success">Send message</button>
+                </div>
+            </div>
+          </form>
+          </div>
+        </div>
+        </div>
+      </div><!-- row -->
+</div>
+</div>
+<!-- / CONTACT FOLDER -->
+
 
 
     <!-- Le javascript
